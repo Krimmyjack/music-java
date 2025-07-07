@@ -1,0 +1,20 @@
+spring:
+  mail:
+    host: smtp.163.com # 网站发送邮件邮箱服务 host
+    port: 465
+    username:   13726878121@163.com
+    password:  FTsvcLk4UtJ5Sidz
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          starttls:
+            enable: true
+mail:
+  address:   13726878121@163.com # 网站发送邮件邮箱地址
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
