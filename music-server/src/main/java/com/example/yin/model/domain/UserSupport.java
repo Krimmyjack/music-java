@@ -6,26 +6,17 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * 
- * @TableName user_support
- */
+
 @Data
 public class UserSupport implements Serializable {
-    /**
-     * 
-     */
+
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 
-     */
+
     private Integer commentId;
 
-    /**
-     * 
-     */
+
     private Integer userId;
 
     private static final long serialVersionUID = 1L;

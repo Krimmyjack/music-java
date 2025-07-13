@@ -4,10 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 
-/**
- * @Author 祝英台炸油条
- * @Time : 2022/6/6 20:14
- **/
+
 @Data
 public class SingerRequest {
     private Integer id;

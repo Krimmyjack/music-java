@@ -27,7 +27,6 @@ public class Comment {
 
     private Integer up;
 
-
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

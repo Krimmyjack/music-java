@@ -1,7 +1,12 @@
 package com.example.yin.controller;
 
 import com.example.yin.common.R;
+import com.example.yin.model.domain.Consumer;
+import com.example.yin.model.domain.Song;
 import com.example.yin.model.request.SongRequest;
+import com.example.yin.service.CollectService;
+import com.example.yin.service.ConsumerService;
+import com.example.yin.service.ListSongService;
 import com.example.yin.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -17,13 +22,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.MultipartConfigElement;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class SongController {
 
     @Autowired
     private SongService songService;
-
+    @Autowired
+    private ListSongService listSongService;
+    @Autowired
+    private CollectService collectService;
+    @Autowired
+    private ConsumerService consumerService;
 
     @Bean
     public MultipartConfigElement multipartConfigElement() {
@@ -46,6 +57,11 @@ public class SongController {
     // 删除歌曲
     @DeleteMapping("/song/delete")
     public R deleteSong(@RequestParam int id) {
+        listSongService.deleteListSong(id);
+        List<Consumer> users = (List<Consumer>)consumerService.allUser().getData();
+        for(Consumer user : users) {
+            collectService.deleteCollect(user.getId(), id);
+        }
         return songService.deleteSong(id);
     }
 
@@ -55,7 +71,6 @@ public class SongController {
         return songService.allSong();
     }
 
-    //TODO ok
     // 返回指定歌曲ID的歌曲
     @GetMapping("/song/detail")
     public R songOfId(@RequestParam int id) {
@@ -92,7 +107,6 @@ public class SongController {
     public R updateSongUrl(@RequestParam("file") MultipartFile urlFile, @RequestParam("id") int id) {
         return songService.updateSongUrl(urlFile, id);
     }
-    ///song/lrc/update
     //更新歌词
     @PostMapping("/song/lrc/update")
     public R updateSongLrc(@RequestParam("file") MultipartFile lrcFile, @RequestParam("id") int id) {

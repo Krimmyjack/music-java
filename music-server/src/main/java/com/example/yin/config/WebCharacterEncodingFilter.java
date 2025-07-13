@@ -10,13 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-/**
- * 说明：解决以下问题
- * <p>
- *     因使用WebMvcConfigurer加载静态时 url encode编码无法解析为正常中文问题
- * </p>
- *
- */
 
 @EnableWebMvc
 @Configuration

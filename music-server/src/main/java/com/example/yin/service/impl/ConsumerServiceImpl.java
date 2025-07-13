@@ -32,9 +32,7 @@ public class ConsumerServiceImpl extends ServiceImpl<ConsumerMapper, Consumer>
     private ConsumerMapper consumerMapper;
 
 
-    /**
-     * 新增用户
-     */
+
     @Override
     public R addUser(ConsumerRequest registryRequest) {
         if (this.existUser(registryRequest.getUsername())) {
@@ -45,14 +43,14 @@ public class ConsumerServiceImpl extends ServiceImpl<ConsumerMapper, Consumer>
         //MD5加密
         String password = DigestUtils.md5DigestAsHex((SALT + registryRequest.getPassword()).getBytes(StandardCharsets.UTF_8));
         consumer.setPassword(password);
-        //都用用
+        //都用空字符串替换掉
         if (StringUtils.isBlank(consumer.getPhoneNum())) {
             consumer.setPhoneNum(null);
         }
         if ("".equals(consumer.getEmail())) {
             consumer.setEmail(null);
         }
-        consumer.setAvator("img/avatorImages/user.jpg");
+        consumer.setAvator("img/avatorImages/user.jpg");//找不到图片
         try {
             QueryWrapper<Consumer> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("email",consumer.getEmail());
@@ -100,11 +98,6 @@ public class ConsumerServiceImpl extends ServiceImpl<ConsumerMapper, Consumer>
         }
     }
 
-    /**
-     * 缩减验证
-     * @param updatePasswordRequest
-     * @return
-     */
     @Override
     public R updatePassword01(ConsumerRequest updatePasswordRequest) {
         Consumer consumer = new Consumer();

@@ -8,18 +8,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RankListMapper extends BaseMapper<RankList> {
 
-    /**
-     * 查总分
-     * @param songListId
-     * @return
-     */
+
+     // 查总分
     int selectScoreSum(Long songListId);
 
-    /**
-     * 查制定用户评分
-     * @param consumerId
-     * @param songListId
-     * @return
-     */
+
+     // 查制定用户评分
     Integer selectUserRank(@Param("consumer_id") Long consumerId, @Param("song_list_id")  Long songListId);
 }

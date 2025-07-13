@@ -4,20 +4,12 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * 
- * @TableName banner
- */
+
+//Serializable 序列化接口，实现序列化，将对象的状态转化为字节序列，方便在网络上传输
 @Data
 public class Banner implements Serializable {
-    /**
-     * 
-     */
     private Integer id;
 
-    /**
-     * 
-     */
     private String pic;
 
     private static final long serialVersionUID = 1L;
