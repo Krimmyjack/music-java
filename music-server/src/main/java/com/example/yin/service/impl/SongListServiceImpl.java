@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.yin.common.R;
 import com.example.yin.controller.MinioUploadController;
 import com.example.yin.mapper.SongListMapper;
+import com.example.yin.model.domain.Song;
 import com.example.yin.model.domain.SongList;
 import com.example.yin.model.request.SongListRequest;
 import com.example.yin.service.SongListService;
@@ -58,6 +59,11 @@ public class SongListServiceImpl extends ServiceImpl<SongListMapper, SongList> i
         return songLists;
     }
 
+    public R songListDetail(int id) {
+        QueryWrapper<SongList> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id",id);
+        return R.success(null, songListMapper.selectList(queryWrapper));
+    }
 
     @Override
     public R likeTitle(String title) {

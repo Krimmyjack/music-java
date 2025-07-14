@@ -15,12 +15,12 @@ import javax.servlet.http.HttpSession;
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService {
 
-    @Autowired
+    @Autowired//自动注入，这样不用重新new一个AdminMapper对象
     private AdminMapper adminMapper;
 
     @Override
     public R verityPasswd(AdminRequest adminRequest, HttpSession session) {
-        QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();//相当于查询条件
         queryWrapper.eq("name",adminRequest.getUsername());
         queryWrapper.eq("password",adminRequest.getPassword());
         if (adminMapper.selectCount(queryWrapper) > 0) {
@@ -28,6 +28,6 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
             return R.success("登录成功");
         } else {
             return R.error("用户名或密码错误");
-        }
+        }//如果查询到结果，则登录成功，并将用户名存入session
     }
 }

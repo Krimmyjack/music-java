@@ -11,9 +11,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author Administrator
- */
+import static java.lang.System.*;
+
 @Service
 public class RankListServiceImpl extends ServiceImpl<RankListMapper, RankList> implements RankListService {
 
@@ -44,6 +43,10 @@ public class RankListServiceImpl extends ServiceImpl<RankListMapper, RankList> i
     @Override
     public R getUserRank(Long consumerId, Long songListId) {
         Integer i = rankMapper.selectUserRank(consumerId, songListId);
-        return R.success(null, i);
+
+        if (i == null || i == 0) {
+            return R.success("未评分", -1);
+        }
+        return R.success("评分成功", i);
     }
 }

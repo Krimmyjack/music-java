@@ -12,7 +12,6 @@ public class CollectController {
     @Autowired
     private CollectService collectService;
 
-
     // 添加收藏的歌曲
     //前台界面逻辑
     @PostMapping("/collection/add")
@@ -20,7 +19,6 @@ public class CollectController {
         return collectService.addCollection(addCollectRequest);
     }
 
-    //TODO  这些其实有点偏简单的逻辑  所以就一点 所以放在外面  拿到里面
     // 取消收藏的歌曲
     @DeleteMapping("/collection/delete")
     public R deleteCollection(@RequestParam Integer userId, @RequestParam Integer songId) {
@@ -31,12 +29,29 @@ public class CollectController {
     @PostMapping("/collection/status")
     public R isCollection(@RequestBody CollectRequest isCollectRequest) {
         return collectService.existSongId(isCollectRequest);
-
     }
 
     // 返回的指定用户 ID 收藏的列表
     @GetMapping("/collection/detail")
     public R collectionOfUser(@RequestParam Integer userId) {
         return collectService.collectionOfUser(userId);
+    }
+
+    // 删除收藏的歌单
+    @DeleteMapping("/collection/deletelist")
+    public R deleteCollectionList(@RequestParam Integer userId, @RequestParam Integer songListId) {
+        return collectService.deleteCollectList(userId, songListId);
+    }
+
+    // 是否收藏歌单
+    @PostMapping("/collection/statuslist")
+    public R isCollectionList(@RequestBody CollectRequest isCollectRequest) {
+        return collectService.existSongListId(isCollectRequest);
+    }
+
+    // 返回的指定用户 ID 收藏的歌单列表
+    @GetMapping("/collection/detaillist")
+    public R collectionOfUserList(@RequestParam Integer userId) {
+        return collectService.collectionOfUserList(userId);
     }
 }

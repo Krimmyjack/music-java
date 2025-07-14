@@ -20,9 +20,8 @@ public class Collect {
 
     private Integer songListId;
 
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT)//自动填充
     private Date createTime;
-
 
     @Override
     public String toString() {

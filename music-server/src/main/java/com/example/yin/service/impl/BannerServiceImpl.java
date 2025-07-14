@@ -10,11 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author asus
- * @description 针对表【banner】的数据库操作Service实现
- * @createDate 2022-06-13 13:13:42
- */
+
 @Service
 public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner>
         implements BannerService {

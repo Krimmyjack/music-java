@@ -4,10 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 
-/**
- * @Author 祝英台炸油条
- * @Time : 2022/6/6 14:29
- **/
+
 @Data
 public class CommentRequest {
     private Integer id;
@@ -24,5 +21,5 @@ public class CommentRequest {
 
     private Byte nowType;
 
-    private Integer up;//点赞
+    private Integer up;//点赞  up=0或1
 }

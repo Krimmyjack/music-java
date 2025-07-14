@@ -28,7 +28,7 @@ public class Consumer {
 
     private String location;
 
-    private String avator;
+    private String avator;//头像路径
 
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;

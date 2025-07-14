@@ -2,6 +2,7 @@ package com.example.yin.controller;
 
 import com.example.yin.common.R;
 import com.example.yin.model.request.SongListRequest;
+import com.example.yin.service.ListSongService;
 import com.example.yin.service.SongListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,8 @@ public class SongListController {
 
     @Autowired
     private SongListService songListService;
-
+    @Autowired
+    private ListSongService listSongService;
 
     // 添加歌单
     @PostMapping("/songList/add")
@@ -23,10 +25,11 @@ public class SongListController {
     // 删除歌单
     @GetMapping("/songList/delete")
     public R deleteSongList(@RequestParam int id) {
+        listSongService.listSongOfSongId(id);
         return songListService.deleteSongList(id);
     }
 
-    //TODO 这块就是前端显现相应的歌单list
+
     // 返回所有歌单
     @GetMapping("/songList")
     public R allSongList() {
@@ -43,6 +46,12 @@ public class SongListController {
     @GetMapping("/songList/style/detail")
     public R songListOfStyle(@RequestParam String style) {
         return songListService.likeStyle('%' + style + '%');
+    }
+
+    //返回指定id的歌单
+    @GetMapping("playlist/detail")
+    public R songListDetail(@RequestParam int id) {
+        return songListService.songListDetail(id);
     }
 
     // 更新歌单信息

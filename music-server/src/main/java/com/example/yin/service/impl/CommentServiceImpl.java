@@ -19,7 +19,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     @Override
     public R addComment(CommentRequest addCommentRequest) {
         Comment comment = new Comment();
-        BeanUtils.copyProperties(addCommentRequest, comment);
+        BeanUtils.copyProperties(addCommentRequest, comment);//根据属性名称和类型自动匹配并复制属性
         comment.setType(addCommentRequest.getNowType());
         if (commentMapper.insert(comment) > 0) {
             return R.success("评论成功");
